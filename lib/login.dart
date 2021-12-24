@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import "package:flutter/material.dart";
 import 'package:flutter_dotnet/home.dart';
+import 'package:flutter_dotnet/models/user.dart';
 import 'package:flutter_dotnet/screens/books_screen.dart';
+import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -19,19 +24,38 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
-  void _signInUser() {
+  void _signInUser() async {
     // Send user credential to server
-    print('User email: ${_emailController.text}');
-    print('User email: ${_passwordController.text}');
-
-    // If response.status == 200:
-    // Save user token to shared_preferences
+    String login = _emailController.text;
+    String password = _passwordController.text;
+    Map<String, String> headers = {'': "", "": ""};
+    final body =
+        jsonEncode(<String, String>{"login": login, "password": password});
+    User user =
+        User(email: 'amir@mail.ru', firstname: 'Amir', lastname: 'Ibragimov');
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (BuildContext lowLevelContext) => Home(
-                  currentUser: {"email": 'test123', "password": 'qwer1234'},
+                  currentUser: user,
                 )));
+    // final response =
+    //     await post(Uri.parse('http://localhost:28057/api/Authors/authenticate'), headers: headers, body: body);
+    // if (response.statusCode == 200) {
+    //   String token = jsonDecode(response.body)['token'];
+    //   SharedPreferences prefs = await SharedPreferences.getInstance();
+    //   await prefs.setString('token', token);
+    //   User user = User.fromJson(jsonDecode(response.body));
+    //   // Save to shared preferences
+    //   Navigator.push(
+    //       context,
+    //       MaterialPageRoute(
+    //           builder: (BuildContext lowLevelContext) => Home(
+    //                 currentUser: user,
+    //               )));
+    // } else {
+    //   print('Something went wrong');
+    // }
   }
 
   @override
