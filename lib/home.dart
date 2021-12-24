@@ -47,6 +47,7 @@ class _HomeState extends State<Home> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -54,9 +55,15 @@ class _HomeState extends State<Home> {
           });
         },
         items: [
-          BottomNavigationBarItem(label: 'Explore', icon: Icon(Icons.book)),
           BottomNavigationBarItem(
-              label: 'Profile', icon: Icon(Icons.admin_panel_settings)),
+              label: 'Explore',
+              icon: Icon(Icons.book, color: Colors.white),
+              activeIcon: Icon(Icons.book_outlined, color: Colors.white)),
+          BottomNavigationBarItem(
+              label: 'Profile',
+              icon: Icon(Icons.verified_user, color: Colors.white),
+              activeIcon:
+                  Icon(Icons.verified_user_outlined, color: Colors.white)),
         ],
       ),
       body: Container(
