@@ -9,7 +9,13 @@ class BooksScreen extends StatefulWidget {
 
 class _BooksScreenState extends State<BooksScreen> {
   @override
+  void initState() {
+    super.initState();
+    // Fetch Books
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(child: Text('Books Screen'));
   }
 }

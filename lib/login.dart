@@ -26,8 +26,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // If response.status == 200:
     // Save user token to shared_preferences
-    Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext lowLevelContext) => Home()));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext lowLevelContext) => Home(
+                  currentUser: {"email": 'test123', "password": 'qwer1234'},
+                )));
   }
 
   @override

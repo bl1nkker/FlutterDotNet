@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotnet/home.dart';
-import 'package:flutter_dotnet/screens/login.dart';
+import 'package:flutter_dotnet/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +30,11 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: token.isEmpty ? LoginScreen() : Home(),
+      home: token.isEmpty
+          ? LoginScreen()
+          : Home(
+              currentUser: {"email": 'test123', "password": 'qwer1234'},
+            ),
     );
   }
 }
